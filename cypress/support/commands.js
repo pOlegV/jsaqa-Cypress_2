@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("login", (email, password) => {
+    cy.visit('http://qamid.tmweb.ru/admin')
+    cy.get('.page-header__subtitle').should('have.text','Администраторррская')
+     if (email) {
+       cy.get('[name="email"]').type(email);
+     }
+     if (password) {
+       cy.get('[name="password"]').type(password);
+     }
+     cy.contains('Авторизоваться').click();
+   });
